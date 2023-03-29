@@ -1,4 +1,4 @@
-import * as tuitsDao from "../hello-controller/tuits-dao.js";
+import * as tuitsDao from "./tuits-dao.js";
 
 const createTuit = async (req, res) => {
   const newTuit = req.body;
@@ -17,13 +17,14 @@ const updateTuit = async (req, res) => {
   const tuitdIdToUpdate = req.params.tid;
   const updates = req.body;
   const status = await tuitsDao.updateTuit(tuitdIdToUpdate, updates);
-  res.sendStatus(status);
+  console.log("status", status);
+  res.json(status);
 };
 
 const deleteTuit = async (req, res) => {
   const tuitIdToDelete = req.params.tid;
   const status = await tuitsDao.deleteTuit(tuitIdToDelete);
-  res.sendStatus(status);
+  res.json(status);
 };
 
 export default (app) => {
